@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block metahead %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ title }}</title>
+    <base href="{{ baseHref }}" target="_blank">
+    {% endblock metahead %}
+
+    <link rel="shortcut icon" href="./project-assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./project-assets/images/favicon.ico" type="image/x-icon">
+
+    {% block head %}
+    <script type='text/javascript' src='//code.jquery.com/jquery-2.1.4.min.js'></script>
+
+    {% include "page/library-js.twig" %}
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.css"/>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.js'></script>
+
+    <link rel="stylesheet" href="vendor/athens/core/assets/css/web.css">
+    <link rel="stylesheet" href="vendor/athens/core/assets/css/print.css">
+
+    <link rel="stylesheet" href="vendor/athens/theme/assets/css/style.css">
+
+    {% endblock head %}
+
+    {% block project_head %}
+
+        {% for cssFile in projectCSS %}
+            <link rel="stylesheet" href="{{ cssFile }}">
+        {% endfor %}
+
+        {% for jsFile in projectJS %}
+            <script type='text/javascript' src='{{ jsFile }}'></script>
+        {% endfor %}
+
+    {% endblock project_head %}
+</head>
+<body id="{{ id }}" class="{{ pageType }} {{ classes|join(' ') }}">
+
+{% block body %}
+<div class="loading-gif hidden"></div>
+
+<div id="mask-screen">
+
+    <div class="search-div">
+        <div class="section-label">Search Criteria</div>
+        <div id="search-criteria-area"></div>
+    </div>
+
+</div>
+
+{% block navheader %}
+<div class="breadcrumbs-container">
+    {% if breadCrumbs %}
+
+        <nav class='breadcrumbs'><ul>
+        {% for crumbKey, crumbValue in breadCrumbs %}
+            {% if not loop.last %}
+                <li><a target="_self" href="{{ crumbValue }}">{{ crumbKey }}</a></li>
+            {% else %}
+                <li class="current"><span>{{ crumbValue }}</span></li>
+            {% endif %}
+        {% endfor %}
+
+        </ul></nav>
+    {% endif %}
+</div>
+{% endblock navheader %}
+
+<div class="page-width">
+
+{% if header %}
+    <h1 class=header>{{ header }}</h1>
+{% endif %}
+
+<div id=top-filters>
+</div>
+
+<br style="line-height:0;clear:both">
+
+{% if subHeader %}
+    <h2 class=subheader>{{ subHeader }}</h2>
+{% endif %}
+
+<br class="page-content-head">
+
+
+    {% block content %}
+    {{ content|raw }}
+    {% endblock content %}
+
+
+</div>
+{% block footer %}
+<div id="footer-container">
+    <p id="footer-wordmark">Athens</p>
+    <p id="footer-tagline">A Web Framework for Academic Institutions</p>
+    <p id="footer-link"><a href="https://athens.framework.rocks">https://athens.framework.rocks</a></p>
+</div>
+{% endblock footer %}
+
+
+{% endblock body %}
+</body>
+</html>
