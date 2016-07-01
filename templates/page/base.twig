@@ -12,17 +12,11 @@
     <link rel="icon" href="./project-assets/images/favicon.ico" type="image/x-icon">
 
     {% block head %}
-    <script type='text/javascript' src='//code.jquery.com/jquery-2.1.4.min.js'></script>
 
-    {% include "page/library-js.twig" %}
+        {% include "page/athens-css.twig" %}
+        {% include "page/athens-js.twig" %}
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.css"/>
-    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.js'></script>
-
-    <link rel="stylesheet" href="vendor/athens/core/assets/css/web.css">
-    <link rel="stylesheet" href="vendor/athens/core/assets/css/print.css">
-
-    <link rel="stylesheet" href="vendor/athens/theme/assets/css/style.css">
+        <link rel="stylesheet" href="vendor/athens/theme/assets/css/style.css">
 
     {% endblock head %}
 
