@@ -4,17 +4,37 @@
     {% block metahead %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
     <base href="{{ baseHref }}" target="_blank">
     {% endblock metahead %}
 
-    <link rel="shortcut icon" href="./project-assets/images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="./project-assets/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="vendor/athens/theme/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="vendor/athens/theme/assets/images/favicon.ico" type="image/x-icon">
 
     {% block head %}
 
         {% include "page/athens-css.twig" %}
         {% include "page/athens-js.twig" %}
+
+        <!--Bootstrap-->
+        <link rel="stylesheet" href="vendor/athens/theme/assets/css/bootstrap.min.css">
+        <script src="vendor/athens/theme/assets/js/bootstrap.min.js"></script>
+
+        <!--Summernote-->
+        <link rel="stylesheet" href="vendor/athens/theme/assets/css/summernote.css">
+        <script src="vendor/athens/theme/assets/js/summernote.js"></script>
+
+        <!--Chosen.js-->
+        <link rel="stylesheet" href="vendor/athens/theme/assets/css/chosen.min.css">
+        <script src="vendor/athens/theme/assets/js/chosen.jquery.min.js"></script>
+
+        <!--bootstrap-notify-->
+        <link rel="stylesheet" href="vendor/athens/theme/assets/css/animate.css">
+        <script src="vendor/athens/theme/assets/js/bootstrap-notify.js"></script>
+
+        <!--Override athens.alert to use bootstrap-notify-->
+        <script src="vendor/athens/theme/assets/js/alert.js"></script>
 
         <link rel="stylesheet" href="vendor/athens/theme/assets/css/style.css">
 
@@ -31,11 +51,15 @@
         {% endfor %}
 
     {% endblock project_head %}
+
+
 </head>
 <body id="{{ id }}" class="{{ pageType }} {{ classes|join(' ') }}">
 
 {% block body %}
 <div class="loading-gif hidden"></div>
+
+<div id="notification-area"></div>
 
 <div id="mask-screen">
 
@@ -46,57 +70,37 @@
 
 </div>
 
-{% block navheader %}
-<div class="breadcrumbs-container">
-    {% if breadCrumbs %}
+{% block navheader %}{% endblock navheader %}
 
-        <nav class='breadcrumbs'><ul>
-        {% for crumbKey, crumbValue in breadCrumbs %}
-            {% if not loop.last %}
-                <li><a target="_self" href="{{ crumbValue }}">{{ crumbKey }}</a></li>
-            {% else %}
-                <li class="current"><span>{{ crumbValue }}</span></li>
-            {% endif %}
-        {% endfor %}
-
-        </ul></nav>
-    {% endif %}
-</div>
-{% endblock navheader %}
-
-<div class="page-width">
-
-{% if header %}
-    <h1 class=header>{{ header }}</h1>
-{% endif %}
-
-<div id=top-filters>
-</div>
-
-<br style="line-height:0;clear:both">
-
-{% if subHeader %}
-    <h2 class=subheader>{{ subHeader }}</h2>
-{% endif %}
-
-<br class="page-content-head">
-
+<div class="container page-width">
 
     {% block content %}
-    {{ content|raw }}
+        {% for writable in writables  %}
+            {{ writable|write|raw }}
+        {% endfor %}
     {% endblock content %}
 
 
 </div>
 {% block footer %}
-<div id="footer-container">
+<div id="footer-container container">
     <p id="footer-wordmark">Athens</p>
     <p id="footer-tagline">A Web Framework for Academic Institutions</p>
     <p id="footer-link"><a href="https://athens.framework.rocks">https://athens.framework.rocks</a></p>
 </div>
 {% endblock footer %}
 
-
 {% endblock body %}
+
+<script type='text/javascript'>
+    $('textarea.html').summernote();
+    $('select').chosen();
+
+    athens.ajax_section.registerPostSectionAction(function() {
+        $('textarea.html').summernote();
+        $('select').chosen();
+    });
+
+</script>
 </body>
 </html>

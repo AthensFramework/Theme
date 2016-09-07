@@ -5,6 +5,9 @@
 
 * {
     margin: 0;
+}
+
+#page-content {
     font-family: sans-serif;
 }
 
@@ -46,6 +49,10 @@ h2 {
     padding-top: 2px;
     font-weight: 600;
     font-family: BebasNeue, sans-serif;
+}
+
+#page-content {
+    font-size:17px;
 }
 
 p {
@@ -138,4 +145,50 @@ p {
 .page-width {
     width:65%;
     margin:auto;
+}
+
+@media only screen and (min-width : 992px) {
+    form.inline-fields label {
+        width:25%;
+    }
+
+    form.inline-fields input[type=text],
+    form.inline-fields div.form-group[data-field-type-for="multiple-choice"] span.form-control {
+        width:70%;
+        display:inline-block
+    }
+
+    form.inline-fields select {
+        width:initial;
+        min-width:30%;
+        display:inline-block;
+    }
+}
+
+
+input[type=text] {
+    font-size:17px;
+}
+
+span.choice {
+    margin-right:20px
+}
+
+input.btn, button.btn {
+    font-size:17px;
+    box-shadow: 2px 2px gray;
+}
+
+input.btn:active, button.btn:active {
+    margin-left:2px;
+    margin-top:2px;
+    box-shadow:none;
+}
+
+div.note-editing-area div.note-editable.panel-body {
+    min-height:200px;
+}
+
+div.form-group label {
+    vertical-align:top;
 }

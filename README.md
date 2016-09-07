@@ -6,7 +6,13 @@ An example theme for the [Athens](https://github.com/Athens/Core) web framework.
 ![Example theme templates in action.](doc/assets/images/demo.png)<br>
 *Create your own theme for easy, attractive, on-brand pages*
 
-## Use
+# Features
+
+## Responsive
+
+## Advanced Field Editors
+
+# Use
 
 These templates are for the [Athens](https://github.com/Athens/Core) web framework. You must be using Framework to use these templates.
 
