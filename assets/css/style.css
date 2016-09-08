@@ -193,3 +193,36 @@ div.note-editing-area div.note-editable.panel-body {
 div.form-group label {
     vertical-align:top;
 }
+
+nav.breadcrumbs ul, nav.breadcrumbs li {
+    list-style-type:none;
+    padding:0;
+    margin:0;
+}
+nav.breadcrumbs {
+    height:2.3em;
+}
+nav.breadcrumbs li {
+    float:left;
+    line-height:2.3em;
+    color:#777;
+}
+nav.breadcrumbs li:not(:first-child) {
+    padding-left:.75em;
+}
+nav.breadcrumbs li a {
+    display:inline-block;
+    padding:0 15px 0 0;
+}
+nav.breadcrumbs li a:link,
+nav.breadcrumbs li a:visited {
+    color:#777;
+    text-decoration:none;
+}
+nav.breadcrumbs li a:hover {
+    text-decoration: underline;
+    color: #1c4273;
+}
+nav.breadcrumbs li:not(:last-child):after {
+    content: ">";
+}
