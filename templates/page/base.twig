@@ -2,11 +2,11 @@
 <html>
 <head>
     {% block metahead %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ title }}</title>
-    <base href="{{ baseHref }}" target="_blank">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ title }}</title>
+        <base href="{{ baseHref }}" target="_self">
     {% endblock metahead %}
 
     <link rel="shortcut icon" href="vendor/athens/theme/assets/images/favicon.ico" type="image/x-icon">
@@ -23,7 +23,7 @@
 
         <!--Summernote-->
         <link rel="stylesheet" href="vendor/athens/theme/assets/css/summernote.css">
-        <script src="vendor/athens/theme/assets/js/summernote.js"></script>
+        <script src="vendor/athens/theme/assets/js/summernote.min.js"></script>
 
         <!--Chosen.js-->
         <link rel="stylesheet" href="vendor/athens/theme/assets/css/chosen.min.css">
@@ -31,7 +31,7 @@
 
         <!--bootstrap-notify-->
         <link rel="stylesheet" href="vendor/athens/theme/assets/css/animate.css">
-        <script src="vendor/athens/theme/assets/js/bootstrap-notify.js"></script>
+        <script src="vendor/athens/theme/assets/js/bootstrap-notify.min.js"></script>
 
         <!--Override athens.alert to use bootstrap-notify-->
         <script src="vendor/athens/theme/assets/js/alert.js"></script>
@@ -43,11 +43,11 @@
     {% block project_head %}
 
         {% for cssFile in projectCSS %}
-            <link rel="stylesheet" href="{{ cssFile }}">
+    <link rel="stylesheet" href="{{ cssFile }}">
         {% endfor %}
 
         {% for jsFile in projectJS %}
-            <script type='text/javascript' src='{{ jsFile }}'></script>
+        <script type='text/javascript' src='{{ jsFile }}'></script>
         {% endfor %}
 
     {% endblock project_head %}
@@ -57,38 +57,38 @@
 <body id="{{ id }}" class="{{ pageType }} {{ classes|join(' ') }}">
 
 {% block body %}
-<div class="loading-gif hidden"></div>
+    <div class="loading-gif hidden"></div>
 
-<div id="notification-area"></div>
+    <div id="notification-area"></div>
 
-<div id="mask-screen">
+    <div id="mask-screen">
 
-    <div class="search-div">
-        <div class="section-label">Search Criteria</div>
-        <div id="search-criteria-area"></div>
+        <div class="search-div">
+            <div class="section-label">Search Criteria</div>
+            <div id="search-criteria-area"></div>
+        </div>
+
     </div>
 
-</div>
+    {% block navheader %}{% endblock navheader %}
 
-{% block navheader %}{% endblock navheader %}
+    <div class="container page-width">
 
-<div class="container page-width">
-
-    {% block content %}
-        {% for writable in writables  %}
-            {{ writable|write|raw }}
-        {% endfor %}
-    {% endblock content %}
+        {% block content %}
+            {% for writable in writables  %}
+                {{ writable|write|raw }}
+            {% endfor %}
+        {% endblock content %}
 
 
-</div>
-{% block footer %}
-<div id="footer-container container">
-    <p id="footer-wordmark">Athens</p>
-    <p id="footer-tagline">A Web Framework for Academic Institutions</p>
-    <p id="footer-link"><a href="https://athens.framework.rocks">https://athens.framework.rocks</a></p>
-</div>
-{% endblock footer %}
+    </div>
+    {% block footer %}
+        <div id="footer-container container">
+            <p id="footer-wordmark">Athens</p>
+            <p id="footer-tagline">A Web Framework for Academic Institutions</p>
+            <p id="footer-link"><a href="https://athens.framework.rocks">https://athens.framework.rocks</a></p>
+        </div>
+    {% endblock footer %}
 
 {% endblock body %}
 
